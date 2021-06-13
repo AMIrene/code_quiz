@@ -8,13 +8,35 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    justify-content: flex-start;
+    justify-content: center;
     background: #fff;
+  }
+
+  a {
+   padding-left: 10%;
+   padding-top: 5%;
+   color: #2b6777;
+   text-decoration: none;
+   font-weight: bold;
+   font-size: 18px;
+
   }
 
   /* Timer style */
 
-  .timer {
+  .timer-container {
+    position:absolute;
+    top:0;
+    right:0;
+    padding-right: 10%;
+    padding-top: 5%;
+    color: #2b6777;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .timer-count {
     height: 240px;
     padding: 10px;
     color: #2b6777;
@@ -23,4 +45,127 @@
   }
 
   /* Main page styling */
-  .start-page-wrapper
+  .page-wrapper {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+      
+      
+  }
+
+  .heading {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2b6777;
+  }
+
+  .start-page-wrapper p {
+    font-size: 20px;
+    color: #2b6777;
+    width: 500px;
+    
+  
+
+  }
+
+  .start-button {
+    background: #2b6777;
+    border: transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 20px 52px;
+    text-align: center;
+    margin-top: 0.6em;
+
+  }
+
+  .btn-choice {
+   display: grid;
+   gap: 10px;
+   margin: 20px 0;
+   
+ 
+    
+   } #question {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    color: #2b6777;
+    padding-top: 20px;
+
+   
+     
+  }
+  
+  .question-button {
+    background-color: #c3dfdd;
+    color: #2b6777;
+    border-radius: 8px;
+    border: transparent;
+    cursor: pointer;
+    font-size: 1.5em;
+    letter-spacing: 0.21px;
+    text-align: left;
+
+     
+  }
+  
+  .hide {
+   display: none;
+  
+  }
+  
+  /* Highscore page styling  */
+  #back-button {
+    background: #2b6777;
+    border: transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 155px;
+    padding: 10px 42px;
+    text-align: center;
+    margin-top: 0.6em;
+
+  }
+
+  #clear-score {
+    background: #2b6777;
+    display: inline-block;
+    border: transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 10px 42px;
+    text-align: center;
+    margin-top: 0.6em;
+
+  }
+
+  #submit-btn {
+    background: #2b6777;
+    border: transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 20px 52px;
+    text-align: center;
+    margin-top: 0.6em;
+
+  }

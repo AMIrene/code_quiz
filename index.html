@@ -14,22 +14,38 @@
   <a href="highscore.html">View Highscore</a>
 
   <!-- Timer -->
-  <div id="timer"></div>
-
+  <div class="timer-container">
+    <div class="timer-text">Time Left:<span id="time-left"> 76</span></div>
+    <div id="timer-count"></div>
+  </div>
   <!-- Title & instructions for quiz -->
-  <div class="start-page-wrapper">
-    <div class="quiz-heading">Coding Quiz Challenge</div>
+  <div class="page-wrapper">
+    <div class="heading">Coding Quiz Challenge</div>
     <p>
-      Answer the following questions related to coding within the time limit. Each incorrect answer will penalise
+      Answer the coding-related questions within the time limit. Each incorrect answer will penalise
       your score / time by 10 seconds.
     </p>
 
-    <!-- multiple-choice questions -->
-    <ul class="question-choice"></ul>
-
     <!-- start button -->
     <button class="start-button">Start Quiz</button>
+
+
+    <!-- multiple-choice questions -->
+    <div id="question-container" class="hide">
+      <div id="question">Question</div>
+      <div id="answer-buttons" class="btn-choice">
+        <button class="question-button">Answer 1</button>
+        <button class="question-button">Answer 2</button>
+        <button class="question-button">Answer 3</button>
+        <button class="question-button">Answer 4</button>
+      </div>
+    </div>
+    <!--Submit button-->
+    <div class="hide">
+    <button id="submit-btn">Submit</button>
+
   </div>
+
 
   <script src="assets/script.js"></script>
 </body>
