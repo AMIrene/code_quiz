@@ -10,10 +10,29 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score*/
 
-const startBtn = document.querySelector(".start-button")
-const questionContainerElement = document.getElementById('question-container')
-const timeLeftDisplay = document.querySelector('#time-left')
-let timeLeft = 76
+
+//start game and timer
+const startBtn = document.querySelector(".start-button");
+const questionContainerElement = document.getElementById('question-container');
+const timeLeftDisplay = document.querySelector('#time-left');
+let timeLeft = 76;
+
+// This starts the timer when user clicks start button
+
+function countDown() {
+    setInterval(function () {
+        if (timeLeft <= 0) {
+            clearInterval(timeLeft = 0)
+
+        }
+
+        timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1
+    }, 1000)
+
+}
+
+startBtn.addEventListener('click', countDown)
 
 //This brings up the first question when user clicks start button
 
@@ -22,74 +41,107 @@ startBtn.addEventListener('click', startGame)
 function startGame() {
     startBtn.classList.add('hide')
     questionContainerElement.classList.remove('hide')
-    
-}
 
-// This starts the timer when user clicks start button
+};
 
-function countDown(){ 
-    setInterval(function(){
-        if(timeLeft <= 0) {
-        clearInterval(timeLeft = 0)
+//question and answer 
+const questionItem = document.querySelector('#question');
+const answerItems = Array.from(document.getElementsByClassName('question-button'));
 
+
+let currentQuestion = {};
+let acceptingAnswers = false;
+let score = 0;
+let questionCounter = 0;
+let availableQuestions = [];
+
+let questions = [
+    {
+        question: "Which of the following number object function returns the value of the number?",
+        choice1: "toString()",
+        choice2: "valueOf()",
+        choice3: "toLocaleString()",
+        choice4: "toPrecision()",
+        answer: 2,
+    },
+    {
+        question: "Which of the following variables takes precedence over the others if the names are the same?",
+        choice1: "global variable",
+        choice2: "the local element",
+        choice3: "the two of the above",
+        choice4: "none of the above",
+        answer: 2,
+    },
+    {
+        question: "The function and var are known as",
+        choice1: "keywords",
+        choice2: "data types",
+        choice3: "declaration statements",
+        choice4: "prototypes",
+        answer: 3,
+    },
+
+    {
+        question: "In JavaScript the x===y statement implies that:",
+        choice1: "both x and y are equal in value, type and reference address",
+        choice2: "both are x and y are equal in value only",
+        choice3: "both are equal in the value and data type",
+        choice4: "both are not same at all",
+        answer: 3,
+    },
+
+    {
+        question: "String values must be enclosed within ____ when being assigned to variables.",
+        choice1: "commas",
+        choice2: "quotes",
+        choice3: "curly brackets",
+        choice4: "parenthesis",
+        answer: 2,
+    },
+
+];
+//scoring and  number of questions in total
+const CORRECT_POINT = 10;
+const MAX_QUESTIONS = 5;
+
+startGame = () => {
+    questionCounter = 0;
+    score = 0;
+    availableQuestions = [...questions];
+    getNewQuestion();
+};
+
+
+getNewQuestion = () => {
+    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        //go to the end page
+        return window.location.assign('/end.html');
     }
+    questionCounter++;
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
+    question.innerText = currentQuestion.question;
 
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -=1
-    }, 1000)
+    answerItems.forEach((choice) => {
+        const number = choice.dataset['number'];
+        choice.innerText = currentQuestion['choice' + number];
+    });
 
-}
+    availableQuestions.splice(questionIndex, 1);
+    acceptingAnswers = true;
+};
 
-startBtn.addEventListener('click', countDown)
+answerItems.forEach((choice) => {
+    choice.addEventListener('click', (e) => {
+        console.log('e');
+        if (!acceptingAnswers) return;
 
-    
+        acceptingAnswers = false;
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset['number'];
+        getNewQuestion();
+    });
+});
 
 
-
-
-// function startGame() {
-
-// }
-
-// function selectQuestion() {
-
-// }
-
-// Questions
-
-// const questions = [
-//      {
-//          question: "Which of the following number object function returns the value of the number?",
-//          answers: 
-         
-//          ["toString()", "valueOf()", "toLocaleString()", "toPrecision()"],
-//          answer: "valueOf()"
-
-//     },
-
-//     {
-//         title: "Which of the following variables takes precedence over the others if the names are the same??",
-//         choices: ["global variable", "the local element", "the two of the above", "none of the above"],
-//         answer: "the local element"
-//     },
-
-//     {
-//         title: "The function and var are known as",
-//         choices: ["keywords", "data types", "declaration statements", "prototypes"],
-//         answer: "declaration statements"
-//     },
-
-//     {
-//         title: "In JavaScript the x===y statement implies that:",
-//         choices: ["both x and y are equal in value, type and reference address", "both are x and y are equal in value only", "both are equal in the value and data type", "both are not same at all"],
-//         answer: "both are equal in the value and data type"
-//     },
-
-//     {
-
-//         title: "String values must be enclosed within ____ when being assigned to variables.",
-//         choices: ["commas", "curly brackets", "quotes", "parenthesis"],
-//         answer: "quotes"
-//     },
-
-// ];
+startGame();
