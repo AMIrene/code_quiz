@@ -36,14 +36,7 @@
     font-size: 18px;
   }
 
-  .timer-count {
-    height: 240px;
-    padding: 10px;
-    color: #2b6777;
-    text-align: center;
-    float: right;
-  }
-
+ 
   /* Main page styling */
   .page-wrapper {
     margin: auto;
@@ -84,14 +77,17 @@
 
   }
 
-  .btn-choice {
+
+   .btn-choice {
    display: grid;
    gap: 10px;
-   margin: 20px 0;
+   margin: 20px 0; 
    
  
     
-   } #question {
+   } 
+   
+   #question {
     font-size: 1.5em;
     font-weight: bold;
     text-align: left;

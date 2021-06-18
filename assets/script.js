@@ -15,14 +15,19 @@ THEN I can save my initials and my score*/
 const startBtn = document.querySelector(".start-button");
 const questionContainerElement = document.getElementById('question-container');
 const timeLeftDisplay = document.querySelector('#time-left');
-let timeLeft = 76;
+const timesUp = document.querySelector('#time-over');
+let timeLeft = 75;
+
 
 // This starts the timer when user clicks start button
 
 function countDown() {
     setInterval(function () {
         if (timeLeft <= 0) {
-            clearInterval(timeLeft = 0)
+            clearInterval(timeLeft = 0);
+            if (availableQuestions.length === 0) {
+                gameOver();
+            }
 
         }
 
@@ -30,7 +35,9 @@ function countDown() {
         timeLeft -= 1
     }, 1000)
 
+
 }
+
 
 startBtn.addEventListener('click', countDown)
 
@@ -59,10 +66,10 @@ let questions = [
     {
         question: "Which of the following number object function returns the value of the number?",
         choice1: "toString()",
-        choice2: "valueOf()",
+        choice2: "toPrecision()",
         choice3: "toLocaleString()",
-        choice4: "toPrecision()",
-        answer: 2,
+        choice4: "valueOf()",
+        answer: 4,
     },
     {
         question: "Which of the following variables takes precedence over the others if the names are the same?",
@@ -101,7 +108,7 @@ let questions = [
 
 ];
 //scoring and  number of questions in total
-const CORRECT_POINT = 10;
+const CORRECT_POINT = 20;
 const MAX_QUESTIONS = 5;
 
 startGame = () => {
@@ -117,6 +124,7 @@ getNewQuestion = () => {
         //go to the end page
         return window.location.assign('/end.html');
     }
+    //randomise questions shown to user
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
@@ -131,17 +139,24 @@ getNewQuestion = () => {
     acceptingAnswers = true;
 };
 
+//This identifies which answer user has selected
 answerItems.forEach((choice) => {
     choice.addEventListener('click', (e) => {
-        console.log('e');
-        if (!acceptingAnswers) return;
+        console.log(choice);
+        // if (!acceptingAnswers) return;
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number'];
         getNewQuestion();
     });
+
+    //Game over function
+    function gameOver(){
+        timesUp.remove('hide')
+    }
 });
+
 
 
 startGame();
