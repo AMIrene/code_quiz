@@ -36,6 +36,19 @@
     font-size: 18px;
   }
 
+  #time-over {
+    position:absolute;
+    top:0;
+    right:0;
+    padding-right: 10%;
+    padding-top: 5%;
+    color: #2b6777;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+
+  }
+
  
   /* Main page styling */
   .page-wrapper {

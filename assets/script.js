@@ -15,19 +15,24 @@ THEN I can save my initials and my score*/
 const startBtn = document.querySelector(".start-button");
 const questionContainerElement = document.getElementById('question-container');
 const timeLeftDisplay = document.querySelector('#time-left');
-const timesUp = document.querySelector('#time-over');
-let timeLeft = 75;
+const timesUp = document.getElementById('time-over');
+const introElement = document.getElementById('instruction-msg');
+const timerElement = document.querySelector(".timer-container");
 
+let timeLeft = 75;
 
 // This starts the timer when user clicks start button
 
 function countDown() {
     setInterval(function () {
+
         if (timeLeft <= 0) {
             clearInterval(timeLeft = 0);
-            if (availableQuestions.length === 0) {
+
+            if (timeLeft <= 0) {
                 gameOver();
             }
+
 
         }
 
@@ -35,6 +40,16 @@ function countDown() {
         timeLeft -= 1
     }, 1000)
 
+
+}
+
+//Game over function
+function gameOver() {
+
+    timesUp.classList.remove('hide')
+    questionContainerElement.classList.add('hide')
+    introElement.classList.add('hide')
+    timerElement.classList.add('hide')
 
 }
 
@@ -47,7 +62,10 @@ startBtn.addEventListener('click', startGame)
 
 function startGame() {
     startBtn.classList.add('hide')
+    introElement.classList.remove('hide')
     questionContainerElement.classList.remove('hide')
+    timerElement.classList.remove('hide')
+
 
 };
 
@@ -151,10 +169,7 @@ answerItems.forEach((choice) => {
         getNewQuestion();
     });
 
-    //Game over function
-    function gameOver(){
-        timesUp.remove('hide')
-    }
+
 });
 
 
