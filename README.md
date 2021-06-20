@@ -41,6 +41,7 @@ THEN I can save my initials and my score
 6. When quiz ends, the user is asked to submit their score and enter initials in a form.
 7. These scores are saved in a second html page called high scores. 
 
+
 ## Wireframe
 
 https://docs.google.com/presentation/d/1vjbGfGn-aSUaqKEtsBUEpCwZSq3uyx9oEc95neVfRpc/edit?usp=sharing

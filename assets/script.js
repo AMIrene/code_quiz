@@ -11,15 +11,66 @@ WHEN the game is over
 THEN I can save my initials and my score*/
 
 
-//start game and timer
+//scoring and  number of questions in total
+let CORRECT_POINT = 20;
+const INCORRECT_TIME_DEDUCTION = 10;
+const MAX_QUESTIONS = 5;
+
+// DOM elements
+
+// Start elements
 const startBtn = document.querySelector(".start-button");
-const questionContainerElement = document.getElementById('question-container');
 const timeLeftDisplay = document.querySelector('#time-left');
-const timesUp = document.getElementById('time-over');
 const introElement = document.getElementById('instruction-msg');
 const timerElement = document.querySelector(".timer-container");
 
-let timeLeft = 75;
+// Running elements
+const questionItem = document.querySelector('#question');
+const answerItems = Array.from(document.getElementsByClassName('question-button'));
+
+const question1Container = document.getElementById('question1-container');
+const question2Container = document.getElementById('question2-container');
+const question3Container = document.getElementById('question3-container');
+const question4Container = document.getElementById('question4-container');
+const question5Container = document.getElementById('question5-container');
+
+// Finished elements
+const timesUp = document.getElementById('time-over');
+
+// State variables- keeps track of user 
+let acceptingAnswers = false; // remove
+let currentScore = 0;
+let currentQuestionNo = 0;
+let timeLeft = 75; //start with 75 seconds
+
+
+const questions = [
+    {
+        number: 1,
+        answer: 4,
+    },
+    {
+        number: 2,
+        answer: 2,
+    },
+    {
+        number: 3,
+        answer: 3,
+    },
+
+    {
+        number: 4,
+        answer: 3,
+    },
+
+    {
+        number: 5,
+        answer: 2,
+    },
+
+];
+
+
 
 // This starts the timer when user clicks start button
 
@@ -36,8 +87,8 @@ function countDown() {
 
         }
 
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
+        timeLeftDisplay.innerHTML = timeLeft;
+        timeLeft -= 1;
     }, 1000)
 
 
@@ -46,132 +97,64 @@ function countDown() {
 //Game over function
 function gameOver() {
 
-    timesUp.classList.remove('hide')
-    questionContainerElement.classList.add('hide')
-    introElement.classList.add('hide')
-    timerElement.classList.add('hide')
+    timesUp.classList.remove('hide');
+    questionContainerElement.classList.add('hide');
+    introElement.classList.add('hide');
+    timerElement.classList.add('hide');
 
 }
 
-
-startBtn.addEventListener('click', countDown)
-
 //This brings up the first question when user clicks start button
 
-startBtn.addEventListener('click', startGame)
+startBtn.addEventListener('click', startBtnClick)
+function startBtnClick() {
 
-function startGame() {
-    startBtn.classList.add('hide')
-    introElement.classList.remove('hide')
-    questionContainerElement.classList.remove('hide')
-    timerElement.classList.remove('hide')
+    // transition to quiz running state
+    startBtn.classList.add('hide');
+    introElement.classList.remove('hide');
 
+    //set the first question to visible
+    question1Container.classList.remove('hide');
+    timerElement.classList.remove('hide');
 
-};
-
-//question and answer 
-const questionItem = document.querySelector('#question');
-const answerItems = Array.from(document.getElementsByClassName('question-button'));
-
-
-let currentQuestion = {};
-let acceptingAnswers = false;
-let score = 0;
-let questionCounter = 0;
-let availableQuestions = [];
-
-let questions = [
-    {
-        question: "Which of the following number object function returns the value of the number?",
-        choice1: "toString()",
-        choice2: "toPrecision()",
-        choice3: "toLocaleString()",
-        choice4: "valueOf()",
-        answer: 4,
-    },
-    {
-        question: "Which of the following variables takes precedence over the others if the names are the same?",
-        choice1: "global variable",
-        choice2: "the local element",
-        choice3: "the two of the above",
-        choice4: "none of the above",
-        answer: 2,
-    },
-    {
-        question: "The function and var are known as",
-        choice1: "keywords",
-        choice2: "data types",
-        choice3: "declaration statements",
-        choice4: "prototypes",
-        answer: 3,
-    },
-
-    {
-        question: "In JavaScript the x===y statement implies that:",
-        choice1: "both x and y are equal in value, type and reference address",
-        choice2: "both are x and y are equal in value only",
-        choice3: "both are equal in the value and data type",
-        choice4: "both are not same at all",
-        answer: 3,
-    },
-
-    {
-        question: "String values must be enclosed within ____ when being assigned to variables.",
-        choice1: "commas",
-        choice2: "quotes",
-        choice3: "curly brackets",
-        choice4: "parenthesis",
-        answer: 2,
-    },
-
-];
-//scoring and  number of questions in total
-const CORRECT_POINT = 20;
-const MAX_QUESTIONS = 5;
-
-startGame = () => {
-    questionCounter = 0;
-    score = 0;
-    availableQuestions = [...questions];
-    getNewQuestion();
+    countDown();
 };
 
 
-getNewQuestion = () => {
-    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-        //go to the end page
-        return window.location.assign('/end.html');
+// Bind click event for all answer buttons
+const answerButtons = document.getElementsByClassName("question-button");
+for (let i = 0; i < answerButtons.length; i++) {
+    const btnElement = answerButtons[i];
+    btnElement.addEventListener('click', answerCallback);
+}
+
+function answerCallback(e) {
+    const btnElement = e.target;
+
+    const choiceNumber = btnElement.dataset.number;
+    const questionNumber = btnElement.parentNode.parentNode.dataset.questionNumber;
+
+    // get answer
+    const currentQuestion = questions.find(question => question.number == questionNumber);
+
+    if (currentQuestion.answer == choiceNumber) {
+        // this is a correct answer
+        // add to the score
+        currentScore++;
+
+
+        console.log("correct");
+
+    } else {
+        // this is incorrect
+        // decrement timer
+        timeLeft -= 10;
+        console.log("incorrect");
     }
-    //randomise questions shown to user
-    questionCounter++;
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    currentQuestion = availableQuestions[questionIndex];
-    question.innerText = currentQuestion.question;
 
-    answerItems.forEach((choice) => {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice' + number];
-    });
+    // Hide current question and unhide next question
+    
+  
+    
+}
 
-    availableQuestions.splice(questionIndex, 1);
-    acceptingAnswers = true;
-};
-
-//This identifies which answer user has selected
-answerItems.forEach((choice) => {
-    choice.addEventListener('click', (e) => {
-        console.log(choice);
-        // if (!acceptingAnswers) return;
-
-        acceptingAnswers = false;
-        const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number'];
-        getNewQuestion();
-    });
-
-
-});
-
-
-
-startGame();

@@ -100,7 +100,7 @@
     
    } 
    
-   #question {
+   .question {
     font-size: 1.5em;
     font-weight: bold;
     text-align: left;
@@ -130,7 +130,7 @@
   }
   
   /* Highscore page styling  */
-  #back-button {
+  .back-button {
     background: #2b6777;
     border: transparent;
     border-radius: 8px;
@@ -146,7 +146,7 @@
 
   }
 
-  #clear-score {
+  .clear-score {
     background: #2b6777;
     display: inline-block;
     border: transparent;
@@ -163,7 +163,7 @@
 
   }
 
-  #submit-btn {
+  .submit-btn {
     background: #2b6777;
     border: transparent;
     border-radius: 8px;
