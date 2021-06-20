@@ -23,6 +23,8 @@ const startBtn = document.querySelector(".start-button");
 const timeLeftDisplay = document.querySelector('#time-left');
 const introElement = document.getElementById('instruction-msg');
 const timerElement = document.querySelector(".timer-container");
+const questionContainerElement = document.getElementById('question-container');
+
 
 // Running elements
 const questionItem = document.querySelector('#question');
@@ -38,10 +40,11 @@ const question5Container = document.getElementById('question5-container');
 const timesUp = document.getElementById('time-over');
 
 // State variables- keeps track of user 
-let acceptingAnswers = false; // remove
+// let acceptingAnswers = false; // remove
 let currentScore = 0;
 let currentQuestionNo = 0;
 let timeLeft = 75; //start with 75 seconds
+
 
 
 const questions = [
@@ -114,6 +117,7 @@ function startBtnClick() {
     introElement.classList.remove('hide');
 
     //set the first question to visible
+    questionContainerElement.classList.remove('hide');
     question1Container.classList.remove('hide');
     timerElement.classList.remove('hide');
 
@@ -153,8 +157,19 @@ function answerCallback(e) {
     }
 
     // Hide current question and unhide next question
-    
-  
-    
+
+    questionContainerElement.classList.remove('hide');
+    question1Container.classList.add('hide');
+    question2Container.classList.remove('hide');
+    timerElement.classList.remove('hide');
+
 }
+
+
+
+
+
+      //when user selects answer, show next question and iterate
+      
+
 
