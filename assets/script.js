@@ -24,6 +24,9 @@ const timeLeftDisplay = document.querySelector('#time-left');
 const introElement = document.getElementById('instruction-msg');
 const timerElement = document.querySelector(".timer-container");
 const questionContainerElement = document.getElementById('question-container');
+const submitScore = document.querySelector('#submit-section');
+const scoreDisplay = document.querySelector('#score-count');
+
 
 
 // Running elements
@@ -43,7 +46,8 @@ const timesUp = document.getElementById('time-over');
 // let acceptingAnswers = false; // remove
 let currentScore = 0;
 let currentQuestionNo = 0;
-let timeLeft = 75; //start with 75 seconds
+let lastQuestionNo = - 1;
+let timeLeft = 5; //start with 75 seconds
 
 
 
@@ -83,6 +87,8 @@ function countDown() {
         if (timeLeft <= 0) {
             clearInterval(timeLeft = 0);
 
+            timesUp.classList.remove('hide');
+
             if (timeLeft <= 0) {
                 gameOver();
             }
@@ -100,12 +106,18 @@ function countDown() {
 //Game over function
 function gameOver() {
 
-    timesUp.classList.remove('hide');
+   
+    // if (questions.length === 0 || currentQuestionNo >= MAX_QUESTIONS) {
+// if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+    
+    
     questionContainerElement.classList.add('hide');
     introElement.classList.add('hide');
     timerElement.classList.add('hide');
+    submitScore.classList.remove('hide');
 
 }
+
 
 //This brings up the first question when user clicks start button
 
@@ -134,7 +146,8 @@ for (let i = 0; i < answerButtons.length; i++) {
 
 function answerCallback(e) {
     const btnElement = e.target;
-
+    const newQuestion = btnElement.dataset.quest;
+   
     const choiceNumber = btnElement.dataset.number;
     const questionNumber = btnElement.parentNode.parentNode.dataset.questionNumber;
 
@@ -156,12 +169,42 @@ function answerCallback(e) {
         console.log("incorrect");
     }
 
-    // Hide current question and unhide next question
+//this moves user from question to question when user selects answer
 
+if (newQuestion == 1) {
+questionContainerElement.classList.remove('hide');
+question1Container.classList.add('hide');
+question2Container.classList.remove('hide');
+timerElement.classList.remove('hide');
+}
+ else if (newQuestion == 2) {
+    question2Container.classList.add('hide');
+    question3Container.classList.remove('hide');
+ }
+
+ if (newQuestion == 3) {
     questionContainerElement.classList.remove('hide');
-    question1Container.classList.add('hide');
-    question2Container.classList.remove('hide');
+    question3Container.classList.add('hide');
+    question4Container.classList.remove('hide');
     timerElement.classList.remove('hide');
+    }
+     else if (newQuestion == 4) {
+        question4Container.classList.add('hide');
+        question5Container.classList.remove('hide');
+     }
+    
+    if (newQuestion == 5) {
+
+        gameOver();
+
+    }
+
+ }
+
+
+
+
+function showScore() {
 
 }
 
@@ -169,7 +212,19 @@ function answerCallback(e) {
 
 
 
-      //when user selects answer, show next question and iterate
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
