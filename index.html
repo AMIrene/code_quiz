@@ -21,7 +21,7 @@
   <div id="time-over" class="hide">Time's up!</div>
   <!-- Title & instructions for quiz -->
   <div class="page-wrapper">
-    <div class="heading">Coding Quiz Challenge</div>
+    <div class="heading" class="hide">Coding Quiz Challenge</div>
     <p id="instruction-msg" class='hide'>
       Answer the coding-related questions within the time limit. Each incorrect answer will penalise
       your score / time by 10 seconds.
@@ -54,63 +54,73 @@
           <button class="question-button" data-quest="2" data-number="3">the two of the above</button>
           <button class="question-button" data-quest="2" data-number="4">none of the above</button>
         </div>
+      </div>
+
+      <div id="question3-container" class="hide" data-question-number="3">
+        <div id="question3" class="question">The function and var are known as?</div>
+        <div id="answer-buttons3" class="answer-buttons btn-choice">
+          <button class="question-button" data-quest="3" data-number="1">keywords</button>
+          <button class="question-button" data-quest="3" data-number="2">data types</button>
+          <button class="question-button" data-quest="3" data-number="3">declaration statements</button>
+          <button class="question-button" data-quest="3" data-number="4">prototypes</button>
+        </div>
+      </div>
+
+      <div id="question4-container" class="hide" data-question-number="4">
+        <div id="question4" class="question">In JavaScript the x===y statement implies that:</div>
+        <div id="answer-buttons4" class="answer-buttons btn-choice">
+          <button class="question-button" data-quest="4" data-number="1">both x and y are equal in value, type and
+            reference
+            address</button>
+          <button class="question-button" data-quest="4" data-number="2">both are x and y are equal in value
+            only</button>
+          <button class="question-button" data-quest="4" data-number="3">both are equal in the value and data
+            type</button>
+          <button class="question-button" data-quest="4" data-number="4">both are not same at all</button>
+        </div>
+      </div>
+
+      <div id="question5-container" class="hide" data-question-number="5">
+        <div id="question5" class="question">String values must be enclosed within ____ when being assigned to
+          variables.</div>
+        <div id="answer-buttons5" class="answer-buttons btn-choice">
+          <button class="question-button" data-quest="5" data-number="1">commas</button>
+          <button class="question-button" data-quest="5" data-number="2">quotes</button>
+          <button class="question-button" data-quest="5" data-number="3">curly brackets</button>
+          <button class="question-button" data-quest="5" data-number="4">paranthesis</button>
         </div>
 
-        <div id="question3-container" class="hide" data-question-number="3">
-          <div id="question3" class="question">The function and var are known as?</div>
-          <div id="answer-buttons3" class="answer-buttons btn-choice">
-            <button class="question-button" data-quest="3" data-number="1">keywords</button>
-            <button class="question-button" data-quest="3" data-number="2">data types</button>
-            <button class="question-button" data-quest="3" data-number="3">declaration statements</button>
-            <button class="question-button" data-quest="3" data-number="4">prototypes</button>
-          </div>
-        </div>
+      </div>
 
-          <div id="question4-container" class="hide" data-question-number="4">
-            <div id="question4" class="question">In JavaScript the x===y statement implies that:</div>
-            <div id="answer-buttons4" class="answer-buttons btn-choice">
-              <button class="question-button" data-quest="4" data-number="1">both x and y are equal in value, type and reference
-                address</button>
-              <button class="question-button" data-quest="4" data-number="2">both are x and y are equal in value only</button>
-              <button class="question-button" data-quest="4" data-number="3">both are equal in the value and data type</button>
-              <button class="question-button" data-quest="4" data-number="4">both are not same at all</button>
-            </div>
-          </div>
+      <div id="check-answer-correct" class="hide">Correct!</div>
+      <div id="check-answer-incorrect" class="hide">Incorrect!</div>
 
-            <div id="question5-container" class="hide" data-question-number="5">
-              <div id="question5" class="question">String values must be enclosed within ____ when being assigned to
-                variables.</div>
-              <div id="answer-buttons5" class="answer-buttons btn-choice">
-                <button class="question-button" data-quest="5" data-number="1">commas</button>
-                <button class="question-button" data-quest="5" data-number="2">quotes</button>
-                <button class="question-button" data-quest="5" data-number="3">curly brackets</button>
-                <button class="question-button" data-quest="5" data-number="4">paranthesis</button>
-              </div>
+    </div>
 
-            </div>
+    <!--Submit score section-->
+    <div id="submit-section" class="hide">
 
-          </div>
-        
-        <!--Submit score section-->
-        <div id="submit-section" class="hide">
-
-          <div id="final-score-statement">You are done!</div>
-
-      
-          <div id="final-score-statement">Your final score is:<span id="score-count"> 0</span></div>
-          <form></form>
-
-         
-            <button id="submit-btn">Submit</button>
-  
-          </div>
-
-      
-        <!--Submit button-->
-        
+      <div id="final-score-statement">You are done!</div>
 
 
-        <script src="assets/script.js"></script>
+      <div class="endpage">Your final score is:<span id="score-count"> 0</span></div>
+      <form>
+        <div class="endpage">Enter your initials</div>
+        <input type="text" name="username" id="username" placeholder="username" />
+   
+      </form>
+
+
+      <button id="submit-btn">Submit</button>
+
+    </div>
+
+
+    <!--Submit button-->
+
+
+
+    <script src="assets/script.js"></script>
 </body>
 
 </html>

@@ -128,6 +128,14 @@
    display: none;
   
   }
+
+  #check-answer-correct, #check-answer-incorrect {
+    color: #2b6777;
+    font-size: 1.5em;
+    padding: 20px;
+    text-align: left;
+  
+  }
   
   /* Highscore page styling  */
   .back-button {
@@ -181,7 +189,17 @@
 
   #final-score-statement {
     color: #2b6777;
-    font-size: 1.5em;
+    font-size: 2.5em;
     padding: 20px;
+    font-weight: bold;
   
+  }
+
+  .endpage {
+    color: #2b6777;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 20px;
+    
+
   }

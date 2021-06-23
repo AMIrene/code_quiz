@@ -26,6 +26,7 @@ const timerElement = document.querySelector(".timer-container");
 const questionContainerElement = document.getElementById('question-container');
 const submitScore = document.querySelector('#submit-section');
 const scoreDisplay = document.querySelector('#score-count');
+const quizTitle = document.querySelector(".heading");
 
 
 
@@ -115,6 +116,7 @@ function gameOver() {
     introElement.classList.add('hide');
     timerElement.classList.add('hide');
     submitScore.classList.remove('hide');
+    quizTitle.classList.add('hide')
 
 }
 
@@ -132,6 +134,7 @@ function startBtnClick() {
     questionContainerElement.classList.remove('hide');
     question1Container.classList.remove('hide');
     timerElement.classList.remove('hide');
+    quizTitle.classList.remove('hide');
 
     countDown();
 };
