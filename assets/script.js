@@ -46,7 +46,7 @@ const timesUp = document.getElementById('time-over');
 // let acceptingAnswers = false; // remove
 let currentScore = 0;
 let currentQuestionNo = 0;
-let lastQuestionNo = - 1;
+
 let timeLeft = 5; //start with 75 seconds
 
 
@@ -153,20 +153,24 @@ function answerCallback(e) {
 
     // get answer
     const currentQuestion = questions.find(question => question.number == questionNumber);
-
+    const answerCheckcorrect = document.getElementById("check-answer-correct");
+    const answerCheckincorrect = document.getElementById("check-answer-incorrect");
     if (currentQuestion.answer == choiceNumber) {
         // this is a correct answer
         // add to the score
         currentScore++;
+        answerCheckcorrect.classList.remove('hide');
 
-
+   
         console.log("correct");
 
     } else {
         // this is incorrect
         // decrement timer
         timeLeft -= 10;
+        answerCheckincorrect.classList.remove('hide');
         console.log("incorrect");
+
     }
 
 //this moves user from question to question when user selects answer
