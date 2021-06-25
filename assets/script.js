@@ -211,9 +211,29 @@ timerElement.classList.remove('hide');
 
 
 
-function showScore() {
+// function showScore() {
+    
+  function showScore() {
+    const enterInitial = document.querySelectorbyId("username");
+    const submitBtnElement = document.querySelectorbyId("submit-btn");
+    submitBtnElement.addEventListener('click', showScore);
+    
+    username.addEventListener("keyup",()=>{
+        console.log(username.value);
 
-}
+  
+
+    })
+  }
+
+
+
+   
+    
+
+    
+
+
 
 
 
