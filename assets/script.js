@@ -83,17 +83,13 @@ const questions = [
 // This starts the timer when user clicks start button
 
 function countDown() {
-    setInterval(function () {
+    let intervalId = setInterval(function () {
 
         if (timeLeft <= 0) {
-            clearInterval(timeLeft = 0);
 
             timesUp.classList.remove('hide');
-
-            if (timeLeft <= 0) {
-                gameOver();
-            }
-
+            gameOver();
+            clearInterval(intervalId);
 
         }
 
@@ -107,19 +103,52 @@ function countDown() {
 //Game over function
 function gameOver() {
 
-   
-    // if (questions.length === 0 || currentQuestionNo >= MAX_QUESTIONS) {
-// if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-    
-    
+
     questionContainerElement.classList.add('hide');
     introElement.classList.add('hide');
     timerElement.classList.add('hide');
+    // show the ending screen, which contains final score, initial input and submit button
     submitScore.classList.remove('hide');
     quizTitle.classList.add('hide')
-
+    showScore();
 }
 
+
+
+
+function showScore() {
+
+    //when the user finishes all the questions, the final score is displayed 
+    scoreDisplay.textContent = currentScore;
+
+    //and user is asked to submit the score 
+    const submitBtnElement = document.getElementById("submit-btn");
+    const enterInitial = document.getElementById("username");
+    submitBtnElement.addEventListener('click', function(event){
+    event.preventDefault()
+        //user's score is then saved in local storage
+       const userName= enterInitial.value;
+       localStorage.setItem('enterInitial', 'currentScore');
+    
+        //user then redirected to the high score page
+        // ...
+    });
+    
+    
+
+
+
+    // const enterInitial = document.querySelectorbyId("username");
+    // const submitBtnElement = document.querySelectorbyId("submit-btn");
+    // submitBtnElement.addEventListener('click', showScore);
+
+    // username.addEventListener("keyup", () => {
+    //     console.log(username.value);
+
+
+
+    // })
+}
 
 //This brings up the first question when user clicks start button
 
@@ -150,7 +179,7 @@ for (let i = 0; i < answerButtons.length; i++) {
 function answerCallback(e) {
     const btnElement = e.target;
     const newQuestion = btnElement.dataset.quest;
-   
+
     const choiceNumber = btnElement.dataset.number;
     const questionNumber = btnElement.parentNode.parentNode.dataset.questionNumber;
 
@@ -161,10 +190,10 @@ function answerCallback(e) {
     if (currentQuestion.answer == choiceNumber) {
         // this is a correct answer
         // add to the score
-        currentScore++;
+        currentScore += 20;
         answerCheckcorrect.classList.remove('hide');
 
-   
+
         console.log("correct");
 
     } else {
@@ -176,62 +205,49 @@ function answerCallback(e) {
 
     }
 
-//this moves user from question to question when user selects answer
+    //this moves user from question to question when user selects answer
 
-if (newQuestion == 1) {
-questionContainerElement.classList.remove('hide');
-question1Container.classList.add('hide');
-question2Container.classList.remove('hide');
-timerElement.classList.remove('hide');
-}
- else if (newQuestion == 2) {
-    question2Container.classList.add('hide');
-    question3Container.classList.remove('hide');
- }
-
- if (newQuestion == 3) {
-    questionContainerElement.classList.remove('hide');
-    question3Container.classList.add('hide');
-    question4Container.classList.remove('hide');
-    timerElement.classList.remove('hide');
+    if (newQuestion == 1) {
+        questionContainerElement.classList.remove('hide');
+        question1Container.classList.add('hide');
+        question2Container.classList.remove('hide');
+        timerElement.classList.remove('hide');
     }
-     else if (newQuestion == 4) {
+    else if (newQuestion == 2) {
+        question2Container.classList.add('hide');
+        question3Container.classList.remove('hide');
+    }
+
+    if (newQuestion == 3) {
+        questionContainerElement.classList.remove('hide');
+        question3Container.classList.add('hide');
+        question4Container.classList.remove('hide');
+        timerElement.classList.remove('hide');
+    }
+    else if (newQuestion == 4) {
         question4Container.classList.add('hide');
         question5Container.classList.remove('hide');
-     }
-    
+    }
+
     if (newQuestion == 5) {
 
         gameOver();
 
     }
 
- }
+}
 
 
 
 
-// function showScore() {
-    
-  function showScore() {
-    const enterInitial = document.querySelectorbyId("username");
-    const submitBtnElement = document.querySelectorbyId("submit-btn");
-    submitBtnElement.addEventListener('click', showScore);
-    
-    username.addEventListener("keyup",()=>{
-        console.log(username.value);
-
-  
-
-    })
-  }
 
 
 
-   
-    
 
-    
+
+
+
+
 
 
 
