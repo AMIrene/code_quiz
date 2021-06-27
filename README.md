@@ -3,6 +3,9 @@
 ## Output
 A timed coding quiz with multiple-choice questions. This app  runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. It has a clean, polished, and responsive user interface. 
 
+## Deployed page: 
+https://amirene.github.io/code_quiz/
+
 
 ## User Story
 
