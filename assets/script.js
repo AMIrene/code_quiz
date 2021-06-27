@@ -29,7 +29,6 @@ const scoreDisplay = document.querySelector('#score-count');
 const quizTitle = document.querySelector(".heading");
 
 
-
 // Running elements
 const questionItem = document.querySelector('#question');
 const answerItems = Array.from(document.getElementsByClassName('question-button'));
@@ -42,13 +41,15 @@ const question5Container = document.getElementById('question5-container');
 
 // Finished elements
 const timesUp = document.getElementById('time-over');
+const submitBtnElement = document.getElementById("submit-btn");
+const enterInitial = document.getElementById("username");
+
 
 // State variables- keeps track of user 
 // let acceptingAnswers = false; // remove
 let currentScore = 0;
 let currentQuestionNo = 0;
-
-let timeLeft = 5; //start with 75 seconds
+let timeLeft = 75; //start with 75 seconds
 
 
 
@@ -113,6 +114,32 @@ function gameOver() {
     showScore();
 }
 
+//one complete callback setup to submit score and initials
+submitBtnElement.addEventListener('click', submitBtnCallback);
+
+function submitBtnCallback(event) {
+    event.preventDefault();
+    console.log(enterInitial.value);
+
+
+    const userName = enterInitial.value;
+
+    const score = {
+        'enterInitial': enterInitial.value,
+        'currentScore': scoreDisplay.textContent
+    }
+    let newScores = [];
+
+    // Get existing scores and concat if they exist
+    const existingScores = JSON.parse(localStorage.getItem('scores'))
+    if (existingScores) {
+        //this scenario when there are existing high scores
+        newScores = newScores.concat(existingScores);
+    }
+
+    newScores.push(score);
+    localStorage.setItem('scores', JSON.stringify(newScores));
+}
 
 
 
@@ -121,33 +148,7 @@ function showScore() {
     //when the user finishes all the questions, the final score is displayed 
     scoreDisplay.textContent = currentScore;
 
-    //and user is asked to submit the score 
-    const submitBtnElement = document.getElementById("submit-btn");
-    const enterInitial = document.getElementById("username");
-    submitBtnElement.addEventListener('click', function(event){
-    event.preventDefault()
-        //user's score is then saved in local storage
-       const userName= enterInitial.value;
-       localStorage.setItem('enterInitial', 'currentScore');
-    
-        //user then redirected to the high score page
-        // ...
-    });
-    
-    
 
-
-
-    // const enterInitial = document.querySelectorbyId("username");
-    // const submitBtnElement = document.querySelectorbyId("submit-btn");
-    // submitBtnElement.addEventListener('click', showScore);
-
-    // username.addEventListener("keyup", () => {
-    //     console.log(username.value);
-
-
-
-    // })
 }
 
 //This brings up the first question when user clicks start button
@@ -192,16 +193,17 @@ function answerCallback(e) {
         // add to the score
         currentScore += 20;
         answerCheckcorrect.classList.remove('hide');
+        answerCheckincorrect.classList.add('hide');
 
 
-        console.log("correct");
 
     } else {
         // this is incorrect
         // decrement timer
         timeLeft -= 10;
         answerCheckincorrect.classList.remove('hide');
-        console.log("incorrect");
+        answerCheckcorrect.classList.add('hide');
+
 
     }
 
