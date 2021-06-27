@@ -120,6 +120,7 @@ submitBtnElement.addEventListener('click', submitBtnCallback);
 function submitBtnCallback(event) {
     event.preventDefault();
     console.log(enterInitial.value);
+   
 
 
     const userName = enterInitial.value;
@@ -139,6 +140,7 @@ function submitBtnCallback(event) {
 
     newScores.push(score);
     localStorage.setItem('scores', JSON.stringify(newScores));
+    window.location.replace("highscore.html");
 }
 
 
