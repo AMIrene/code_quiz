@@ -9,7 +9,7 @@ clearScore.addEventListener('click', clearScorebtnClick)
 function clearScorebtnClick() {
     localStorage.clear();
     location.reload();
- 
+
 };
 
 //Retrieves scores logged in local storage
@@ -22,10 +22,12 @@ if (existingScores) {
         createList.textContent = existingScores[i].enterInitial + " " + existingScores[i].currentScore;
         highScoreList.appendChild(createList);
     }
+
+
 }
-    //go back to main page
-    goBack.addEventListener('click', goBacktoMainpage)
-    function goBacktoMainpage() {
-        window.location.replace("index.html");
-    
+//go back to main page
+goBack.addEventListener('click', goBacktoMainpage)
+function goBacktoMainpage() {
+    window.location.replace("index.html");
+
 };
