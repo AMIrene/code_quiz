@@ -6,7 +6,7 @@ A timed coding quiz with multiple-choice questions. This app  runs in the browse
 ## Deployed page: 
 https://amirene.github.io/code_quiz/
 
-[Screenshot](./assets/screencapture-file-C-code-quiz-index-html-2021-07-18-19_57_38.png)
+![Screenshot](./assets/screencapture-file-C-code-quiz-index-html-2021-07-18-19_57_38.png)
 
 
 ## User Story
