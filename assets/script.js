@@ -161,7 +161,7 @@ function startBtnClick() {
     // transition to quiz running state
     startBtn.classList.add('hide');
     introElement.classList.remove('hide');
-
+    
     //set the first question to visible
     questionContainerElement.classList.remove('hide');
     question1Container.classList.remove('hide');

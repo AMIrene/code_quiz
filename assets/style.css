@@ -221,3 +221,6 @@
     box-shadow: -0.5px -0.5px 6px 0.5px #2b6777;
     color: #2b6777;
   }
+  #instruction-msg {
+    padding-top: 15px;
+  }
